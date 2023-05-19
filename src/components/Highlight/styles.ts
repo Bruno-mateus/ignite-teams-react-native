@@ -3,6 +3,7 @@ import styled from "styled-components/native";
 export const ContainerHighlight = styled.View`
   width: 100%;
   align-items: center;
+  gap: 5px;
 `;
 
 export const Title = styled.Text`

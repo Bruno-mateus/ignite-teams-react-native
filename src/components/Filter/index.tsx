@@ -9,7 +9,7 @@ export type FilterProps = TouchableOpacityProps &
 
 export function Filter({ title, isActive = false, ...rest }: FilterProps) {
   return (
-    <Container isActive={isActive}>
+    <Container isActive={isActive} {...rest}>
       <Title>{title}</Title>
     </Container>
   );

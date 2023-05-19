@@ -8,6 +8,7 @@ import {
 import { Loading } from "@components/Loading";
 import { StatusBar } from "react-native";
 import { Players } from "@screens/Players";
+import { Groups } from "@screens/Groups";
 
 export default function App() {
   let [fontsLoaded] = useFonts({
@@ -23,7 +24,7 @@ export default function App() {
         translucent
       />
 
-      {fontsLoaded ? <Players /> : <Loading />}
+      {fontsLoaded ? <Groups /> : <Loading />}
     </ThemeProvider>
   );
 }

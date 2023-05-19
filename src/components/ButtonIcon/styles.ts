@@ -16,13 +16,7 @@ export const ContainerButtonIcon = styled(TouchableOpacity)`
   align-items: center;
 `;
 
-export const Form = styled.View`
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  background-color: ${({ theme }) => theme.COLORS.GRAY_700};
-`;
+
 
 export const Icon = styled(MaterialIcons).attrs<props>(({ theme, type }) => ({
   size: 24,

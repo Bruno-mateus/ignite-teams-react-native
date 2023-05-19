@@ -1,12 +1,6 @@
 import { TouchableOpacityProps } from "react-native";
-import {
-  ButtonIconTypeStyleProps,
-  ContainerButtonIcon,
-  Form,
-  Icon,
-} from "./styles";
+import { ButtonIconTypeStyleProps, ContainerButtonIcon, Icon } from "./styles";
 import { MaterialIcons } from "@expo/vector-icons";
-import { Input } from "@components/Input";
 
 type ButtonIconProps = TouchableOpacityProps & {
   type?: ButtonIconTypeStyleProps;
@@ -19,11 +13,8 @@ export function ButtonIcon({
   ...rest
 }: ButtonIconProps) {
   return (
-    <Form>
-      <Input autoCorrect={false} placeholder="Nome da pessoa" />
-      <ContainerButtonIcon>
-        <Icon name={icon} type={type} />
-      </ContainerButtonIcon>
-    </Form>
+    <ContainerButtonIcon {...rest}>
+      <Icon name={icon} type={type} />
+    </ContainerButtonIcon>
   );
 }
