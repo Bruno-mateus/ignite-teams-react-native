@@ -3,8 +3,13 @@ import { Container, Content, Icon, InputGroup } from "./styles";
 import { Highlight } from "@components/Highlight";
 import { Button } from "@components/Button";
 import { Input } from "@components/Input";
+import { useNavigation } from "@react-navigation/native";
 
 export function NewGroup() {
+  const { navigate } = useNavigation();
+  function handlePlayersScreen() {
+    navigate("players", { groups: "team a" });
+  }
   return (
     <Container>
       <Header showBackButton />
@@ -16,7 +21,7 @@ export function NewGroup() {
         />
         <InputGroup>
           <Input />
-          <Button title="Criar" />
+          <Button title="Criar" onPress={() => handlePlayersScreen()} />
         </InputGroup>
       </Content>
     </Container>

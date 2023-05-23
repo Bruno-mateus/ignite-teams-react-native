@@ -7,8 +7,7 @@ import {
 } from "@expo-google-fonts/roboto";
 import { Loading } from "@components/Loading";
 import { StatusBar } from "react-native";
-import { Players } from "@screens/Players";
-import { Groups } from "@screens/Groups";
+import { Routes } from "@routes/index";
 
 export default function App() {
   let [fontsLoaded] = useFonts({
@@ -24,7 +23,7 @@ export default function App() {
         translucent
       />
 
-      {fontsLoaded ? <Groups /> : <Loading />}
+      {fontsLoaded ? <Routes /> : <Loading />}
     </ThemeProvider>
   );
 }
