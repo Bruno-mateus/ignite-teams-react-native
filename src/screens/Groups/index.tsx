@@ -25,9 +25,9 @@ export function Groups() {
     }
   }
 
+
   useFocusEffect(
     useCallback(() => {
-      console.log("executou");
       fetchGroups();
     }, [])
   );
