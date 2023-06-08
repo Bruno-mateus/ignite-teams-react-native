@@ -9,6 +9,9 @@ export async function groupCreate(newGroup: string) {
 
     const groupAlreadyExists = groups.find((group) => group === newGroup);
 
+    if (newGroup.trim().length <= 0)
+      throw new AppError("Insira um nome válido para continuar");
+
     if (groupAlreadyExists)
       throw new AppError("Já existe um grupo com esse nome");
 

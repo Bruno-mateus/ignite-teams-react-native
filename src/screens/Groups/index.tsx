@@ -12,6 +12,7 @@ import { groupsGetAll } from "@storage/group/groupGetAll";
 export function Groups() {
   const [groups, setGroups] = useState<string[]>([]);
   const { navigate } = useNavigation();
+  
   function handleNavigation() {
     navigate("new");
   }
@@ -25,6 +26,9 @@ export function Groups() {
     }
   }
 
+  function navigateToPlayers(group: string) {
+    navigate("players", { group });
+  }
 
   useFocusEffect(
     useCallback(() => {
@@ -41,7 +45,9 @@ export function Groups() {
         keyExtractor={(item) =>
           JSON.stringify(groups.findIndex((itemIndex) => itemIndex === item))
         }
-        renderItem={({ item }) => <GroupCard title={item} />}
+        renderItem={({ item }) => (
+          <GroupCard title={item} onPress={() => navigateToPlayers(item)} />
+        )}
         contentContainerStyle={groups.length <= 0 && { flex: 1 }}
         ListEmptyComponent={<ListEmpty message="Nenhum grupo criado ainda" />}
       />
