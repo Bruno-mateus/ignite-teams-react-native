@@ -11,13 +11,14 @@ import { PlayerCard } from "@components/PlayerCard";
 import { Input } from "@components/Input";
 import { ListEmpty } from "@components/ListEmpty";
 import { Button } from "@components/Button";
-import { useRoute } from "@react-navigation/native";
+import { useNavigation, useRoute } from "@react-navigation/native";
 import { AppError } from "@utils/AppError";
 import { playerAddByGroup } from "@storage/players/playerAddByGroup";
 import { playersGetByGroup } from "@storage/players/playersGetByGroup";
 import { PlayerStorageDTO } from "@storage/players/PlayerStorageDTO";
 import { playersGetByTeam } from "@storage/players/playersGetByTeam";
 import { playerRemoveByGroup } from "@storage/players/playerRemoveByGroup";
+import { groupRemove } from "@storage/group/groupRemove";
 
 type RouteParams = {
   group: string;
@@ -27,8 +28,10 @@ export function Players() {
   const [team, setTeam] = useState("TIME A");
   const [players, setPlayers] = useState<PlayerStorageDTO[]>([]);
   const [player, setPlayer] = useState<string>("");
-  const route = useRoute();
   const newPlayerNameInputRef = useRef<TextInput>(null);
+
+  const route = useRoute();
+  const { navigate } = useNavigation();
 
   const { group } = route.params as RouteParams;
 
@@ -74,6 +77,21 @@ export function Players() {
         Alert.alert("Adicionar pessoa", error.message);
       }
     }
+  }
+  async function handleRemoveGroup(groupName: string) {
+    Alert.alert(
+      "Exluir turma",
+      `Deseja realmente excluir a turma ${groupName} ?`,
+      [
+        { text: "Não", style: "cancel" },
+        {
+          text: "Sim",
+          onPress: async () => {
+            await groupRemove(groupName), navigate("groups");
+          },
+        },
+      ]
+    );
   }
 
   return (
@@ -128,7 +146,11 @@ export function Players() {
         )}
         ListEmptyComponent={<ListEmpty message="Não há pessoas nesse time" />}
       />
-      <Button title="Remover turma" variants="secondary" />
+      <Button
+        title="Remover turma"
+        onPress={async () => await handleRemoveGroup(group)}
+        variants="secondary"
+      />
     </Container>
   );
 }
